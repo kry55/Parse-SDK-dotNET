@@ -24,7 +24,6 @@
     <ConsolePause>False</ConsolePause>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
-    <AssemblyName>Parse.iOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -35,7 +34,6 @@
     <ConsolePause>False</ConsolePause>
     <MtouchLink>None</MtouchLink>
     <SignAssembly>True</SignAssembly>
-    <AssemblyName>Parse</AssemblyName>
     <DefineConstants>MONO;IOS</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
@@ -49,7 +47,6 @@
     <ConsolePause>False</ConsolePause>
     <MtouchDebug>True</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <AssemblyName>Parse.iOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -59,7 +56,6 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <AssemblyName>Parse.iOS</AssemblyName>
     <DefineConstants>MONO;IOS</DefineConstants>
     <DocumentationFile>bin\Release\iOS\Parse.iOS.xml</DocumentationFile>
   </PropertyGroup>
@@ -72,7 +68,6 @@
     <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Distribution</CodesignKey>
     <BuildIpa>True</BuildIpa>
-    <AssemblyName>Parse.iOS</AssemblyName>
     <DefineConstants>MONO;IOS</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
@@ -83,13 +78,11 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Distribution</CodesignKey>
-    <AssemblyName>Parse.iOS</AssemblyName>
     <DefineConstants>MONO;IOS</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhoneSimulator'">
     <DefineConstants>MONO;IOS</DefineConstants>
     <OutputPath>bin\Ad-Hoc</OutputPath>
-    <AssemblyName>ParseiOS</AssemblyName>
     <DebugType>none</DebugType>
     <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
@@ -97,7 +90,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'AppStore|iPhoneSimulator'">
     <DefineConstants>MONO;IOS</DefineConstants>
     <OutputPath>bin\AppStore</OutputPath>
-    <AssemblyName>ParseiOS</AssemblyName>
     <DebugType>none</DebugType>
     <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
@@ -121,9 +113,28 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- Assembly info, etc. -->
-    <Compile Include="Properties\*.cs" Exclude="Properties\Settings.Designer.cs" />
-    <Compile Include="Internal\**\*.cs" Exclude="$(ExcludedPlatformSpecificSourceFilesString)" />
-    <Compile Include="Public\**\*.cs" Exclude="$(ExcludedPlatformSpecificSourceFilesString)" />
+    <Compile Include="Public\iOS\ParseInstallation.iOS.cs" />
+    <Compile Include="Public\iOS\ParsePush.iOS.cs" />
+    <Compile Include="Public\ParsePush.cs" />
+    <Compile Include="Public\ParsePushNotificationEventArgs.cs" />
+    <Compile Include="Public\ParseInstallation.cs" />
+    <Compile Include="Internal\Coder\ParsePushEncoder.cs" />
+    <Compile Include="Internal\Controller\IParsePushChannelsController.cs" />
+    <Compile Include="Internal\Controller\IParsePushController.cs" />
+    <Compile Include="Internal\Controller\ParsePushChannelsController.cs" />
+    <Compile Include="Internal\Controller\ParsePushController.cs" />
+    <Compile Include="Internal\DeviceInfo\iOS\DeviceInfoController.cs" />
+    <Compile Include="Internal\DeviceInfo\IDeviceInfoController.cs" />
+    <Compile Include="Internal\Installation\Coder\IParseInstallationCoder.cs" />
+    <Compile Include="Internal\Installation\Coder\ParseInstallationCoder.cs" />
+    <Compile Include="Internal\Installation\Controller\IParseCurrentInstallationController.cs" />
+    <Compile Include="Internal\Installation\Controller\ParseCurrentInstallationController.cs" />
+    <Compile Include="Internal\State\IPushState.cs" />
+    <Compile Include="Internal\State\MutablePushState.cs" />
+    <Compile Include="Internal\ParsePushModule.cs" />
+    <Compile Include="Internal\ParsePushPlugins.cs" />
+    <Compile Include="Internal\IParsePushPlugins.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -131,6 +142,12 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="PCLStorage.Abstractions">
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\portable-Xamarin.iOS+Xamarin.Mac\PCLStorage.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage">
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\portable-Xamarin.iOS+Xamarin.Mac\PCLStorage.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" Condition="Exists('$(SolutionDir)\.nuget\nuget.targets')" />
@@ -143,5 +160,11 @@
       <Project>{f3f65351-2ce1-4412-84b4-c36f34eab928}</Project>
       <Name>ParseCore.Portable</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

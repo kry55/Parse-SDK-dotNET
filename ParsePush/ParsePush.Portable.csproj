@@ -55,9 +55,26 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- Assembly info, etc. -->
-    <Compile Include="Properties\*.cs" Exclude="Properties\Settings.Designer.cs" />
-    <Compile Include="Internal\**\*.cs" Exclude="$(ExcludedPlatformSpecificSourceFilesString)" />
-    <Compile Include="Public\**\*.cs" Exclude="$(ExcludedPlatformSpecificSourceFilesString)" />
+    <Compile Include="Internal\Coder\ParsePushEncoder.cs" />
+    <Compile Include="Internal\Controller\IParsePushChannelsController.cs" />
+    <Compile Include="Internal\Controller\IParsePushController.cs" />
+    <Compile Include="Internal\Controller\ParsePushChannelsController.cs" />
+    <Compile Include="Internal\Controller\ParsePushController.cs" />
+    <Compile Include="Internal\DeviceInfo\Portable\DeviceInfoController.cs" />
+    <Compile Include="Internal\DeviceInfo\IDeviceInfoController.cs" />
+    <Compile Include="Internal\Installation\Coder\IParseInstallationCoder.cs" />
+    <Compile Include="Internal\Installation\Coder\ParseInstallationCoder.cs" />
+    <Compile Include="Internal\Installation\Controller\IParseCurrentInstallationController.cs" />
+    <Compile Include="Internal\Installation\Controller\ParseCurrentInstallationController.cs" />
+    <Compile Include="Internal\State\IPushState.cs" />
+    <Compile Include="Internal\State\MutablePushState.cs" />
+    <Compile Include="Internal\ParsePushModule.cs" />
+    <Compile Include="Internal\ParsePushPlugins.cs" />
+    <Compile Include="Internal\IParsePushPlugins.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Public\ParseInstallation.cs" />
+    <Compile Include="Public\ParsePush.cs" />
+    <Compile Include="Public\ParsePushNotificationEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ParseCommon\ParseCommon.Portable.csproj">
@@ -68,6 +85,9 @@
       <Project>{f3f65351-2ce1-4412-84b4-c36f34eab928}</Project>
       <Name>ParseCore.Portable</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
