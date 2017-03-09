@@ -409,7 +409,9 @@ namespace Parse {
 
       return GetCurrentUserAsync(cancellationToken).OnSuccess(t => {
         var user = t.Result;
-        return user.UpgradeToRevocableSessionAsync(cancellationToken);
+		  if (user == null)
+					return Task.Delay(0);
+		return user.UpgradeToRevocableSessionAsync(cancellationToken);
       });
     }
 
